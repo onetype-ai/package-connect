@@ -10,3 +10,9 @@ import './items/providers/google.js';
 /* Actions */
 import './items/actions/slack/send.js';
 import './items/actions/github/issue.js';
+
+/* Vault keys */
+import './items/vault/connect.js';
+import './items/vault/slack.js';
+import './items/vault/github.js';
+import './items/vault/google.js';

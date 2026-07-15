@@ -61,11 +61,18 @@ commands.Item({
 		if(provider.Get('auth') === 'oauth2')
 		{
 			const oauth2 = provider.Get('oauth2');
+			const client = await $ot.vault.get(oauth2.id);
+
+			if(!client)
+			{
+				return resolve(null, provider.Get('name') + ' is not configured yet. Add its credentials in the vault.', 400);
+			}
+
 			const nonce = crypto.randomBytes(16).toString('hex');
 
 			const params = new URLSearchParams({
-				client_id: process.env[oauth2.id],
-				redirect_uri: process.env.CONNECT_REDIRECT,
+				client_id: client,
+				redirect_uri: await $ot.vault.get('CONNECT_REDIRECT'),
 				scope: oauth2.scopes,
 				state: properties.provider + ':' + team + ':' + nonce,
 				response_type: 'code'

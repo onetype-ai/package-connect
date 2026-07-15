@@ -26,9 +26,9 @@ connections.Fn('callback', async function(code, state)
 		body: new URLSearchParams({
 			grant_type: 'authorization_code',
 			code: code,
-			client_id: process.env[oauth2.id],
-			client_secret: process.env[oauth2.secret],
-			redirect_uri: process.env.CONNECT_REDIRECT
+			client_id: await $ot.vault.get(oauth2.id),
+			client_secret: await $ot.vault.get(oauth2.secret),
+			redirect_uri: await $ot.vault.get('CONNECT_REDIRECT')
 		})
 	});
 

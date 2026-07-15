@@ -23,8 +23,8 @@ connections.Fn('refresh', async function(connection)
 		body: new URLSearchParams({
 			grant_type: 'refresh_token',
 			refresh_token: credentials.refresh_token,
-			client_id: process.env[oauth2.id],
-			client_secret: process.env[oauth2.secret]
+			client_id: await $ot.vault.get(oauth2.id),
+			client_secret: await $ot.vault.get(oauth2.secret)
 		})
 	});
 

@@ -8,7 +8,9 @@
 	"color": "rgba(56, 189, 248, 1)",
 	"core": ">=0.1.0",
 	"status": "enabled",
-	"depends": [],
+	"depends": [
+		"onetype/vault"
+	],
 	"permissions": [],
 	"limits": {},
 	"features": {},
