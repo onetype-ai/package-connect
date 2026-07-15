@@ -1,0 +1,19 @@
+{
+    "name": "@onetype/connect",
+    "version": "0.1.0",
+    "description": "Connect external providers like Slack, GitHub, Google and Stripe. OAuth connections per team and a library of actions any package can call.",
+    "type": "module",
+    "license": "MIT",
+    "author": "Dejan Tomic <hi@iamdejan.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/onetype-ai/package-connect.git"
+    },
+    "imports": {
+        "#connect/*": "./back/*"
+    },
+    "peerDependencies": {
+        "@onetype/framework": ">=2.0.0",
+        "@onetype/platform": ">=0.1.0"
+    }
+}
