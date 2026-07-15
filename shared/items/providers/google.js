@@ -4,7 +4,7 @@ connectProviders.Item({
 	slug: 'google',
 	name: 'Google',
 	description: 'Gmail, Calendar and Drive by Google.',
-	icon: 'google',
+	icon: 'mail',
 	color: 'rgba(66, 133, 244, 1)',
 	auth: 'oauth2',
 	oauth2: {

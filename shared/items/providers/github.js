@@ -4,7 +4,7 @@ connectProviders.Item({
 	slug: 'github',
 	name: 'GitHub',
 	description: 'Code hosting and collaboration.',
-	icon: 'github',
+	icon: 'code',
 	color: 'rgba(36, 41, 47, 1)',
 	auth: 'oauth2',
 	oauth2: {

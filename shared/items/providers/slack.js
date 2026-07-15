@@ -4,7 +4,7 @@ connectProviders.Item({
 	slug: 'slack',
 	name: 'Slack',
 	description: 'Team messaging and collaboration.',
-	icon: 'slack',
+	icon: 'forum',
 	color: 'rgba(74, 21, 75, 1)',
 	auth: 'oauth2',
 	oauth2: {
