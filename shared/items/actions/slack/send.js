@@ -1,7 +1,7 @@
 import onetype from '@onetype/framework';
-import actions from '#connect/actions/addon.js';
+import connectActions from '#connect/actions/addon.js';
 
-actions.Item({
+connectActions.Item({
 	slug: 'slack:messages:send',
 	provider: 'slack',
 	name: 'Send Message',

@@ -1,6 +1,6 @@
 import onetype from '@onetype/framework';
 
-const actions = onetype.Addon('connect.actions', (addon) =>
+const connectActions = onetype.Addon('connect.actions', (addon) =>
 {
 	addon.Field('slug', {
 		type: 'string',
@@ -45,4 +45,4 @@ const actions = onetype.Addon('connect.actions', (addon) =>
 
 import './schema.js';
 
-export default actions;
+export default connectActions;

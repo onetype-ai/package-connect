@@ -1,6 +1,6 @@
-import providers from '#connect/providers/addon.js';
+import connectProviders from '#connect/providers/addon.js';
 
-providers.Item({
+connectProviders.Item({
 	slug: 'slack',
 	name: 'Slack',
 	description: 'Team messaging and collaboration.',

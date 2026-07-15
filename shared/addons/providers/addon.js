@@ -1,6 +1,6 @@
 import onetype from '@onetype/framework';
 
-const providers = onetype.Addon('connect.providers', (addon) =>
+const connectProviders = onetype.Addon('connect.providers', (addon) =>
 {
 	addon.Field('slug', {
 		type: 'string',
@@ -75,4 +75,4 @@ const providers = onetype.Addon('connect.providers', (addon) =>
 
 import './schema.js';
 
-export default providers;
+export default connectProviders;
