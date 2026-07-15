@@ -1,6 +1,7 @@
 import connectProviders from '#connect/providers/addon.js';
 
 connectProviders.Item({
+	id: 'github',
 	slug: 'github',
 	name: 'GitHub',
 	description: 'Code hosting and collaboration.',

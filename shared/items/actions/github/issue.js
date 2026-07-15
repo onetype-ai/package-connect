@@ -2,6 +2,7 @@ import onetype from '@onetype/framework';
 import connectActions from '#connect/actions/addon.js';
 
 connectActions.Item({
+	id: 'github:issues:create',
 	slug: 'github:issues:create',
 	provider: 'github',
 	name: 'Create Issue',

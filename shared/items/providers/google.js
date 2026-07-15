@@ -1,6 +1,7 @@
 import connectProviders from '#connect/providers/addon.js';
 
 connectProviders.Item({
+	id: 'google',
 	slug: 'google',
 	name: 'Google',
 	description: 'Gmail, Calendar and Drive by Google.',

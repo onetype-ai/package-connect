@@ -1,6 +1,7 @@
 import connectProviders from '#connect/providers/addon.js';
 
 connectProviders.Item({
+	id: 'slack',
 	slug: 'slack',
 	name: 'Slack',
 	description: 'Team messaging and collaboration.',

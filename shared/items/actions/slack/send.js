@@ -2,6 +2,7 @@ import onetype from '@onetype/framework';
 import connectActions from '#connect/actions/addon.js';
 
 connectActions.Item({
+	id: 'slack:messages:send',
 	slug: 'slack:messages:send',
 	provider: 'slack',
 	name: 'Send Message',

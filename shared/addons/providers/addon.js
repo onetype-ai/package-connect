@@ -2,6 +2,12 @@ import onetype from '@onetype/framework';
 
 const connectProviders = onetype.Addon('connect.providers', (addon) =>
 {
+	addon.Field('id', {
+		type: 'string',
+		required: true,
+		description: 'Unique id of the provider, the same as its slug.'
+	});
+
 	addon.Field('slug', {
 		type: 'string',
 		required: true,

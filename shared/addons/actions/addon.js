@@ -2,6 +2,12 @@ import onetype from '@onetype/framework';
 
 const connectActions = onetype.Addon('connect.actions', (addon) =>
 {
+	addon.Field('id', {
+		type: 'string',
+		required: true,
+		description: 'Unique id of the action, the same as its slug.'
+	});
+
 	addon.Field('slug', {
 		type: 'string',
 		required: true,
