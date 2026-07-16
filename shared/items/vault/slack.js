@@ -5,14 +5,14 @@ onetype.AddonReady('vault', (vault) =>
 		key: 'SLACK_CLIENT_ID',
 		name: 'Slack Client ID',
 		description: 'From your Slack app OAuth settings.',
-		provider: 'slack'
+		group: 'Slack'
 	});
 
 	vault.Item({
 		key: 'SLACK_CLIENT_SECRET',
 		name: 'Slack Client Secret',
 		description: 'From your Slack app OAuth settings.',
-		provider: 'slack',
+		group: 'Slack',
 		secret: true
 	});
 });
