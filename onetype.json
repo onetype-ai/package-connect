@@ -3,7 +3,7 @@
 	"slug": "onetype/connect",
 	"name": "Connect",
 	"version": "0.1.0",
-	"description": "Connect external providers like Slack, GitHub, Google and Stripe. OAuth connections per team and a library of actions any package can call.",
+	"description": "Connect external providers like Slack, GitHub, Google and Stripe. OAuth connections for the instance and a library of actions any package can call.",
 	"icon": "link",
 	"color": "rgba(56, 189, 248, 1)",
 	"core": ">=0.1.0",

@@ -8,7 +8,7 @@ commands.Item({
 	exposed: true,
 	method: 'POST',
 	endpoint: '/api/connect/run',
-	description: 'Runs an action against one of the team connections, returning the action output.',
+	description: 'Runs an action against one of the instance connections, returning the action output.',
 	metadata: { addon: 'connect' },
 	condition: function()
 	{
@@ -49,7 +49,7 @@ commands.Item({
 			return resolve(null, 'Action ' + properties.action + ' not found.', 404);
 		}
 
-		const connection = await connections.Find().filter('id', properties.connection).filter('team_id', this.http.state.user.team.id).filter('deleted_at', null, 'NULL').one();
+		const connection = await connections.Find().filter('id', properties.connection).filter('deleted_at', null, 'NULL').one();
 
 		if(!connection)
 		{

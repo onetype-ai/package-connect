@@ -4,9 +4,9 @@ import providers from '#connect/providers/addon.js';
 
 connections.Fn('callback', async function(code, state)
 {
-	const [slug, team] = String(state).split(':');
+	const [slug] = String(state).split(':');
 
-	if(!slug || !team)
+	if(!slug)
 	{
 		throw onetype.Error(400, 'Invalid state parameter.');
 	}
@@ -40,7 +40,6 @@ connections.Fn('callback', async function(code, state)
 	const normalized = oauth2.normalize(await response.json());
 
 	const connection = connections.Item({
-		team_id: Number(team),
 		provider: slug,
 		status: 'active',
 		credentials: this.Fn('encrypt', {

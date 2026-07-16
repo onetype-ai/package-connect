@@ -56,8 +56,6 @@ commands.Item({
 			return resolve(null, 'Provider ' + properties.provider + ' not found.', 404);
 		}
 
-		const team = this.http.state.user.team.id;
-
 		if(provider.Get('auth') === 'oauth2')
 		{
 			const oauth2 = provider.Get('oauth2');
@@ -74,7 +72,7 @@ commands.Item({
 				client_id: client,
 				redirect_uri: await $ot.vault.get('CONNECT_REDIRECT'),
 				scope: oauth2.scopes,
-				state: properties.provider + ':' + team + ':' + nonce,
+				state: properties.provider + ':' + nonce,
 				response_type: 'code'
 			});
 
@@ -89,7 +87,6 @@ commands.Item({
 			}
 
 			const connection = connections.Item({
-				team_id: team,
 				provider: properties.provider,
 				status: 'active',
 				credentials: connections.Fn('encrypt', properties.credentials),
@@ -99,7 +96,7 @@ commands.Item({
 
 			await connection.Create();
 
-			return resolve({ connection: connection.Get(['id', 'team_id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at']) }, provider.Get('name') + ' connected.');
+			return resolve({ connection: connection.Get(['id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at']) }, provider.Get('name') + ' connected.');
 		}
 
 		resolve(null, 'Unsupported auth type.', 400);

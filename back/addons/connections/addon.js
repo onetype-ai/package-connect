@@ -9,12 +9,6 @@ const connections = onetype.Addon('connect.connections', (addon) =>
 		description: 'Unique connection id.'
 	});
 
-	addon.Field('team_id', {
-		type: 'number',
-		required: true,
-		description: 'Id of the team the connection belongs to.'
-	});
-
 	addon.Field('provider', {
 		type: 'string',
 		required: true,
@@ -75,7 +69,6 @@ const connections = onetype.Addon('connect.connections', (addon) =>
 	});
 
 	addon.Schema('id bigserial primary key');
-	addon.Schema('team_id bigint not null');
 	addon.Schema('provider varchar(255) not null');
 	addon.Schema('status varchar(50) not null default \'active\'');
 	addon.Schema('credentials text');
@@ -85,7 +78,6 @@ const connections = onetype.Addon('connect.connections', (addon) =>
 	addon.Schema('updated_at timestamptz not null default now()');
 	addon.Schema('created_at timestamptz not null default now()');
 	addon.Schema('deleted_at timestamptz');
-	addon.Schema('index (team_id)');
 	addon.Schema('index (provider)');
 });
 

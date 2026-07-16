@@ -2,7 +2,7 @@ elements.ItemAdd({
 	id: 'connect-connections',
 	icon: 'lan',
 	name: 'Connect Connections',
-	description: 'List of the active connections of the team, each with its provider, connected account, status and a revoke action.',
+	description: 'List of the active connections of the instance, each with its provider, connected account, status and a revoke action.',
 	category: 'Connect',
 	collection: 'Home',
 	author: 'OneType',
@@ -61,7 +61,7 @@ elements.ItemAdd({
 			<div class="box">
 				<div class="head">
 					<h1>Connections</h1>
-					<p>Every provider your team has authorized.</p>
+					<p>Every provider this instance has authorized.</p>
 				</div>
 
 				<div ot-if="loading" class="loading"><i class="spin">progress_activity</i></div>

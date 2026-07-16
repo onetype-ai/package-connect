@@ -6,7 +6,7 @@ commands.Item({
 	exposed: true,
 	method: 'GET',
 	endpoint: '/api/connect/list',
-	description: 'Lists the active connections of the signed in team.',
+	description: 'Lists the active connections of the instance.',
 	metadata: { addon: 'connect' },
 	condition: function()
 	{
@@ -23,17 +23,16 @@ commands.Item({
 				type: 'object',
 				config: 'connect.connection'
 			},
-			description: 'The team connections, newest first.'
+			description: 'The instance connections, newest first.'
 		}
 	},
 	callback: async function(properties, resolve)
 	{
 		const items = await connections.Find()
-			.filter('team_id', this.http.state.user.team.id)
 			.filter('deleted_at', null, 'NULL')
 			.sort('created_at', 'DESC')
 			.many();
 
-		resolve({ connections: items.map((item) => item.Get(['id', 'team_id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at'])) });
+		resolve({ connections: items.map((item) => item.Get(['id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at'])) });
 	}
 });

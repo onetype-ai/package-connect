@@ -5,10 +5,6 @@ onetype.DataSchema('connect.connection', {
 		type: 'number',
 		description: 'Unique connection id.'
 	},
-	team_id: {
-		type: 'number',
-		description: 'Id of the team the connection belongs to.'
-	},
 	provider: {
 		type: 'string',
 		description: 'Slug of the provider this connection authenticates against.'

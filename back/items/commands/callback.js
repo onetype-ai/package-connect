@@ -18,7 +18,7 @@ commands.Item({
 		state: {
 			type: 'string',
 			required: true,
-			description: 'State parameter carrying the provider slug and team id.'
+			description: 'State parameter carrying the provider slug and a nonce.'
 		}
 	},
 	out: {
@@ -32,6 +32,6 @@ commands.Item({
 	{
 		const connection = await connections.Fn('callback', properties.code, properties.state);
 
-		resolve({ connection: connection.Get(['id', 'team_id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at']) }, 'Connection linked.');
+		resolve({ connection: connection.Get(['id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at']) }, 'Connection linked.');
 	}
 });

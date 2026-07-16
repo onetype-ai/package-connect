@@ -30,7 +30,7 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const connection = await connections.Find().filter('id', properties.id).filter('team_id', this.http.state.user.team.id).filter('deleted_at', null, 'NULL').one();
+		const connection = await connections.Find().filter('id', properties.id).filter('deleted_at', null, 'NULL').one();
 
 		if(!connection)
 		{
