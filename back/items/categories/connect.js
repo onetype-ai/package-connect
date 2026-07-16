@@ -1,3 +1,5 @@
+import onetype from '@onetype/framework';
+
 onetype.AddonReady('vault.categories', (categories) =>
 {
 	categories.Item({

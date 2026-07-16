@@ -10,6 +10,13 @@ import './addons/connections/functions/revoke.js';
 /* Actions */
 import './addons/actions/item/functions/run.js';
 
+/* Vault */
+import './items/categories/connect.js';
+import './items/vault/connect.js';
+import './items/vault/slack.js';
+import './items/vault/github.js';
+import './items/vault/google.js';
+
 /* Commands */
 import './items/commands/link.js';
 import './items/commands/callback.js';
