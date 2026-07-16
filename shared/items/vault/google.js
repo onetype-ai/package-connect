@@ -5,6 +5,7 @@ onetype.AddonReady('vault', (vault) =>
 		key: 'GOOGLE_CLIENT_ID',
 		name: 'Google Client ID',
 		description: 'From your Google Cloud OAuth credentials.',
+		category: 'connect',
 		group: 'Google'
 	});
 
@@ -12,6 +13,7 @@ onetype.AddonReady('vault', (vault) =>
 		key: 'GOOGLE_CLIENT_SECRET',
 		name: 'Google Client Secret',
 		description: 'From your Google Cloud OAuth credentials.',
+		category: 'connect',
 		group: 'Google',
 		secret: true
 	});
