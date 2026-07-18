@@ -18,6 +18,7 @@ Create an OAuth app under **Settings → Developer settings → OAuth Apps**, co
 	logo: 'https://cdn.simpleicons.org/github/ffffff',
 	icon: 'code',
 	color: 'rgba(36, 41, 47, 1)',
+	vault: ['GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET'],
 	auth: 'oauth2',
 	oauth2: {
 		authorize: 'https://github.com/login/oauth/authorize',

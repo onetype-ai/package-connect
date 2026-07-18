@@ -18,6 +18,7 @@ Create OAuth credentials in the [Google Cloud console](https://console.cloud.goo
 	logo: 'https://cdn.simpleicons.org/google',
 	icon: 'mail',
 	color: 'rgba(66, 133, 244, 1)',
+	vault: ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET'],
 	auth: 'oauth2',
 	oauth2: {
 		authorize: 'https://accounts.google.com/o/oauth2/v2/auth',

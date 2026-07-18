@@ -49,7 +49,7 @@ elements.ItemAdd({
 				return connection.metadata && connection.metadata.name ? 'Connected as ' + connection.metadata.name : 'Connected';
 			}
 
-			return provider.keys.every((key) => this.stored[key]) ? 'Ready to connect' : 'Setup needed';
+			return provider.vault.every((key) => this.stored[key]) ? 'Ready to connect' : 'Setup needed';
 		};
 
 		this.filters = () =>

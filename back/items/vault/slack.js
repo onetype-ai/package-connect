@@ -17,4 +17,13 @@ onetype.AddonReady('vault.keys', (keys) =>
 		group: 'Slack',
 		secret: true
 	});
+
+	keys.Item({
+		key: 'SLACK_SIGNING_SECRET',
+		name: 'Slack Signing Secret',
+		description: 'From App Credentials, verifies that incoming Slack requests are genuine.',
+		category: 'connect',
+		group: 'Slack',
+		secret: true
+	});
 });

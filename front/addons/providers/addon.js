@@ -49,7 +49,7 @@ onetype.AddonReady('connect', (connect) =>
 			description: 'How the platform authenticates against the provider.'
 		});
 
-		addon.Field('keys', {
+		addon.Field('vault', {
 			type: 'array',
 			value: [],
 			description: 'Vault key names the provider needs before it can connect.'

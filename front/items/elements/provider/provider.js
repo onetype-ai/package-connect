@@ -31,10 +31,10 @@ elements.ItemAdd({
 				return;
 			}
 
-			this.provider = item.Get(['slug', 'name', 'description', 'overview', 'tags', 'logo', 'icon', 'color', 'auth', 'keys']);
+			this.provider = item.Get(['slug', 'name', 'description', 'overview', 'tags', 'logo', 'icon', 'color', 'auth', 'vault']);
 			this.actions = $ot.connect.actions(this.slug);
 
-			const wanted = this.provider.keys;
+			const wanted = this.provider.vault;
 			this.keys = (await $ot.vault.list()).filter((key) => wanted.includes(key.key));
 
 			const connections = await $ot.connect.connections();
@@ -158,7 +158,11 @@ elements.ItemAdd({
 						</div>
 
 						<div class="block" data-section="credentials">
-							<e-global-heading title="Credentials" description="Keys this provider reads from the vault." element="h3" :border="true"></e-global-heading>
+							<e-global-heading title="Credentials" description="Keys this provider reads from the vault." element="h3" :border="true">
+								<div slot="right">
+									<e-form-button text="Open Vault" icon="lock" tone="soft" :_click="() => $ot.ui.apps.open('vault')"></e-form-button>
+								</div>
+							</e-global-heading>
 							<e-global-parameters ot-if="keys.length" :items="credentials()" :background="1"></e-global-parameters>
 							<e-status-empty ot-if="!keys.length" icon="key" title="No credentials" description="This provider does not read any keys from the vault."></e-status-empty>
 						</div>
