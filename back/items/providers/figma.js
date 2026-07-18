@@ -20,12 +20,19 @@ Create an app at [figma.com/developers/apps](https://www.figma.com/developers/ap
 	color: 'rgba(162, 89, 255, 1)',
 	vault: ['FIGMA_CLIENT_ID', 'FIGMA_CLIENT_SECRET'],
 	auth: 'oauth2',
+	scopes: [
+		{ name: 'file_content:read', description: 'Read the node tree of design files and render them to images.' },
+		{ name: 'file_metadata:read', description: 'Read file names, versions and thumbnails.' },
+		{ name: 'file_comments:read', description: 'Read the comments of design files.' },
+		{ name: 'file_comments:write', description: 'Post and manage comments on design files.' },
+		{ name: 'library_content:read', description: 'Read published components and styles.' },
+		{ name: 'current_user:read', description: 'Read the profile of the connected account.' }
+	],
 	oauth2: {
 		authorize: 'https://www.figma.com/oauth',
 		token: 'https://api.figma.com/v1/oauth/token',
 		refresh: 'https://api.figma.com/v1/oauth/refresh',
 		exchange: 'basic',
-		scopes: 'file_content:read,file_metadata:read,file_comments:read,file_comments:write,library_content:read,current_user:read',
 		id: 'FIGMA_CLIENT_ID',
 		secret: 'FIGMA_CLIENT_SECRET',
 		normalize: function(data)

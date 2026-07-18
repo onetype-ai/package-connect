@@ -70,7 +70,7 @@ commands.Item({
 			const params = new URLSearchParams({
 				client_id: client,
 				redirect_uri: await $ot.vault.get('CONNECT_REDIRECT'),
-				scope: oauth2.scopes,
+				scope: connect.providers.Fn('merge', provider),
 				state: properties.provider + ':' + nonce,
 				response_type: 'code'
 			});

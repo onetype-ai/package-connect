@@ -52,7 +52,7 @@ onetype.AddonReady('connect', (connect) =>
 		addon.Field('scopes', {
 			type: 'array',
 			value: [],
-			description: 'OAuth scopes the provider requests when connecting.'
+			description: 'OAuth scopes the provider requests when connecting, with what each one is for.'
 		});
 
 		addon.Field('vault', {

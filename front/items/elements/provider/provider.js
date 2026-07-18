@@ -79,13 +79,14 @@ elements.ItemAdd({
 
 		this.scopeRows = () =>
 		{
-			const granted = this.connection && this.connection.scopes ? this.connection.scopes.split(',') : [];
+			const granted = this.connection && this.connection.scopes ? this.connection.scopes.split(/[ ,]+/) : [];
 
 			return this.provider.scopes.map((scope) => ({
-				id: scope,
-				title: scope,
+				id: scope.name,
+				title: scope.name,
+				description: scope.description,
 				icon: 'verified_user',
-				status: !this.connection ? { label: 'Requested', color: 'blue' } : (granted.includes(scope) ? { label: 'Granted', color: 'green' } : { label: 'Missing', color: 'orange' })
+				status: !this.connection ? { label: 'Requested', color: 'blue' } : (granted.includes(scope.name) ? { label: 'Granted', color: 'green' } : { label: 'Missing', color: 'orange' })
 			}));
 		};
 

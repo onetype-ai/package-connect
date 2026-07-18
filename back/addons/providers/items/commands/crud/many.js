@@ -28,16 +28,6 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		const providers = Object.values(connect.providers.Items()).map((item) =>
-		{
-			const oauth2 = item.Get('oauth2');
-
-			return {
-				...item.Get(['slug', 'name', 'description', 'overview', 'tags', 'vault', 'logo', 'icon', 'color', 'auth']),
-				scopes: oauth2 && oauth2.scopes ? oauth2.scopes.split(',') : []
-			};
-		});
-
-		resolve({ providers });
+		resolve({ providers: Object.values(connect.providers.Items()).map((item) => item.Get(['slug', 'name', 'description', 'overview', 'tags', 'scopes', 'vault', 'logo', 'icon', 'color', 'auth'])) });
 	}
 });

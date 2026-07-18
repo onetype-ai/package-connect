@@ -20,10 +20,14 @@ Create OAuth credentials in the [Google Cloud console](https://console.cloud.goo
 	color: 'rgba(66, 133, 244, 1)',
 	vault: ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET'],
 	auth: 'oauth2',
+	scopes: [
+		{ name: 'https://www.googleapis.com/auth/gmail.send', description: 'Send email as the connected account.' },
+		{ name: 'https://www.googleapis.com/auth/calendar', description: 'Read and manage calendars and events.' }
+	],
 	oauth2: {
 		authorize: 'https://accounts.google.com/o/oauth2/v2/auth',
 		token: 'https://oauth2.googleapis.com/token',
-		scopes: 'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/calendar',
+		separator: ' ',
 		id: 'GOOGLE_CLIENT_ID',
 		secret: 'GOOGLE_CLIENT_SECRET',
 		normalize: function(data)

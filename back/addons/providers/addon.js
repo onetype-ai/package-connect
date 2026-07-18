@@ -54,6 +54,25 @@ onetype.AddonReady('connect', (connect) =>
 			description: 'Accent color as a hex or rgba string.'
 		});
 
+		addon.Field('scopes', {
+			type: 'array',
+			value: [],
+			each: {
+				type: 'object',
+				config: {
+					name: {
+						type: 'string',
+						description: 'Scope name the provider understands, like chat:write.'
+					},
+					description: {
+						type: 'string',
+						description: 'What the scope allows, in plain words.'
+					}
+				}
+			},
+			description: 'OAuth scopes the provider requests when connecting, with what each one is for.'
+		});
+
 		addon.Field('vault', {
 			type: 'array',
 			value: [],

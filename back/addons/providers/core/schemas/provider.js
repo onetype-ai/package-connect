@@ -28,8 +28,20 @@ onetype.DataSchema('connect.provider', {
 	},
 	scopes: {
 		type: 'array',
-		each: { type: 'string' },
-		description: 'OAuth scopes the provider requests when connecting.'
+		each: {
+			type: 'object',
+			config: {
+				name: {
+					type: 'string',
+					description: 'Scope name the provider understands.'
+				},
+				description: {
+					type: 'string',
+					description: 'What the scope allows.'
+				}
+			}
+		},
+		description: 'OAuth scopes the provider requests when connecting, with what each one is for.'
 	},
 	vault: {
 		type: 'array',

@@ -20,10 +20,13 @@ Create an OAuth app under **Settings → Developer settings → OAuth Apps**, co
 	color: 'rgba(36, 41, 47, 1)',
 	vault: ['GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET'],
 	auth: 'oauth2',
+	scopes: [
+		{ name: 'repo', description: 'Read and write repositories: contents, issues and pull requests.' },
+		{ name: 'read:user', description: 'Read the profile of the connected account.' }
+	],
 	oauth2: {
 		authorize: 'https://github.com/login/oauth/authorize',
 		token: 'https://github.com/login/oauth/access_token',
-		scopes: 'repo,read:user',
 		id: 'GITHUB_CLIENT_ID',
 		secret: 'GITHUB_CLIENT_SECRET',
 		normalize: function(data)

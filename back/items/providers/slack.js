@@ -20,10 +20,15 @@ Create an app at [api.slack.com/apps](https://api.slack.com/apps), open **OAuth 
 	color: 'rgba(74, 21, 75, 1)',
 	vault: ['SLACK_CLIENT_ID', 'SLACK_CLIENT_SECRET', 'SLACK_SIGNING_SECRET'],
 	auth: 'oauth2',
+	scopes: [
+		{ name: 'chat:write', description: 'Post, edit and delete messages as the app.' },
+		{ name: 'channels:read', description: 'See the public channels of the workspace and their details.' },
+		{ name: 'channels:manage', description: 'Create and archive channels, set their topics.' },
+		{ name: 'channels:join', description: 'Join public channels so the app can post there.' }
+	],
 	oauth2: {
 		authorize: 'https://slack.com/oauth/v2/authorize',
 		token: 'https://slack.com/api/oauth.v2.access',
-		scopes: 'chat:write,channels:read,channels:manage,channels:join',
 		id: 'SLACK_CLIENT_ID',
 		secret: 'SLACK_CLIENT_SECRET',
 		normalize: function(data)

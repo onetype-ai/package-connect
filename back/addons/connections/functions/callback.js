@@ -55,7 +55,7 @@ connect.connections.Fn('callback', async function(code, state)
 			refresh_token: normalized.refresh_token,
 			token_type: normalized.token_type
 		}),
-		scopes: normalized.scopes ? normalized.scopes : oauth2.scopes,
+		scopes: normalized.scopes ? normalized.scopes : connect.providers.Fn('merge', provider),
 		metadata: normalized.metadata ? normalized.metadata : {},
 		expires_at: normalized.expires_at
 	});
