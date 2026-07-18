@@ -26,13 +26,8 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const { data, message, code } = await $ot.command('connect:run', properties, true);
+		const result = await connect.actions.Fn('run', properties.action, properties.input, properties.connection);
 
-		if(code !== 200)
-		{
-			return resolve(null, message, code);
-		}
-
-		resolve(data, message);
+		resolve({ result }, 'Action ran.');
 	}
 });
