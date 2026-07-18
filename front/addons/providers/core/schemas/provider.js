@@ -20,6 +20,11 @@ onetype.DataSchema('connect.provider', {
 		each: { type: 'string' },
 		description: 'Category tags shown on the provider card and page.'
 	},
+	scopes: {
+		type: 'array',
+		each: { type: 'string' },
+		description: 'OAuth scopes the provider requests when connecting.'
+	},
 	vault: {
 		type: 'array',
 		each: { type: 'string' },

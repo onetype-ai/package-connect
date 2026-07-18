@@ -49,6 +49,12 @@ onetype.AddonReady('connect', (connect) =>
 			description: 'How the platform authenticates against the provider.'
 		});
 
+		addon.Field('scopes', {
+			type: 'array',
+			value: [],
+			description: 'OAuth scopes the provider requests when connecting.'
+		});
+
 		addon.Field('vault', {
 			type: 'array',
 			value: [],

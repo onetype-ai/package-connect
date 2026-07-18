@@ -31,7 +31,7 @@ elements.ItemAdd({
 				return;
 			}
 
-			this.provider = item.Get(['slug', 'name', 'description', 'overview', 'tags', 'logo', 'icon', 'color', 'auth', 'vault']);
+			this.provider = item.Get(['slug', 'name', 'description', 'overview', 'tags', 'logo', 'icon', 'color', 'auth', 'scopes', 'vault']);
 			this.actions = $ot.connect.actions.list(this.slug);
 
 			const wanted = this.provider.vault;
@@ -54,6 +54,7 @@ elements.ItemAdd({
 			{ id: 'overview', label: 'Overview', icon: 'info' },
 			{ id: 'credentials', label: 'Credentials', icon: 'key', hint: this.keys.filter((key) => key.filled).length + ' of ' + this.keys.length + ' stored' },
 			{ id: 'actions', label: 'Actions', icon: 'bolt', hint: this.actions.length + (this.actions.length === 1 ? ' action' : ' actions') },
+			{ id: 'scopes', label: 'Scopes', icon: 'verified_user', hint: this.provider.scopes.length + (this.provider.scopes.length === 1 ? ' scope' : ' scopes') },
 			{ id: 'connection', label: 'Connection', icon: 'lan', hint: this.connection ? 'active' : 'none' }
 		];
 
@@ -73,6 +74,18 @@ elements.ItemAdd({
 				type: key.filled ? 'stored' : 'empty',
 				required: true,
 				description: key.name + (key.filled ? '' : ' — fill it in through the vault.')
+			}));
+		};
+
+		this.scopeRows = () =>
+		{
+			const granted = this.connection && this.connection.scopes ? this.connection.scopes.split(',') : [];
+
+			return this.provider.scopes.map((scope) => ({
+				id: scope,
+				title: scope,
+				icon: 'verified_user',
+				status: !this.connection ? { label: 'Requested', color: 'blue' } : (granted.includes(scope) ? { label: 'Granted', color: 'green' } : { label: 'Missing', color: 'orange' })
 			}));
 		};
 
@@ -185,6 +198,12 @@ elements.ItemAdd({
 									</div>
 								</e-core-section>
 							</div>
+						</div>
+
+						<div class="block" data-section="scopes">
+							<e-global-heading title="Scopes" description="Permissions requested when the provider connects." element="h3" :border="true"></e-global-heading>
+							<e-views-list ot-if="provider.scopes.length" :items="scopeRows()" :background="1"></e-views-list>
+							<e-status-empty ot-if="!provider.scopes.length" icon="verified_user" title="No scopes" description="This provider does not request any oauth scopes."></e-status-empty>
 						</div>
 
 						<div class="block" data-section="connection">

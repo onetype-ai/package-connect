@@ -26,6 +26,11 @@ onetype.DataSchema('connect.provider', {
 		type: 'string',
 		description: 'Url of the provider logo image.'
 	},
+	scopes: {
+		type: 'array',
+		each: { type: 'string' },
+		description: 'OAuth scopes the provider requests when connecting.'
+	},
 	vault: {
 		type: 'array',
 		each: {
