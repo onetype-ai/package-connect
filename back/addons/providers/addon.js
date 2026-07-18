@@ -54,6 +54,13 @@ onetype.AddonReady('connect', (connect) =>
 			description: 'Accent color as a hex or rgba string.'
 		});
 
+		addon.Field('vault', {
+			type: 'array',
+			value: [],
+			each: { type: 'string' },
+			description: 'Vault key names the provider needs before it can connect.'
+		});
+
 		addon.Field('auth', {
 			type: 'string',
 			value: 'oauth2',
@@ -99,4 +106,3 @@ onetype.AddonReady('connect', (connect) =>
 	});
 });
 
-import './schema.js';

@@ -26,7 +26,7 @@ onetype.DataSchema('connect.provider', {
 		type: 'string',
 		description: 'Url of the provider logo image.'
 	},
-	keys: {
+	vault: {
 		type: 'array',
 		each: {
 			type: 'string'

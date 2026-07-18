@@ -52,4 +52,3 @@ onetype.AddonReady('connect', (connect) =>
 	});
 });
 
-import './schema.js';

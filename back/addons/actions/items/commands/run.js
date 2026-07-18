@@ -7,7 +7,7 @@ commands.Item({
 	exposed: true,
 	method: 'POST',
 	endpoint: '/api/connect/run',
-	description: 'Runs an action against one of the instance connections, returning the action output.',
+	description: 'Runs an action against a connection, defaulting to the active connection of the action provider, and returns the action output.',
 	metadata: { addon: 'connect' },
 	condition: function()
 	{
@@ -24,8 +24,7 @@ commands.Item({
 		},
 		connection: {
 			type: 'number',
-			required: true,
-			description: 'Id of the connection the action runs against.'
+			description: 'Id of the connection the action runs against. Empty uses the active connection of the action provider.'
 		},
 		input: {
 			type: 'object',
@@ -48,14 +47,20 @@ commands.Item({
 			return resolve(null, 'Action ' + properties.action + ' not found.', 404);
 		}
 
-		const connection = await connect.connections.Find().filter('id', properties.connection).filter('deleted_at', null, 'NULL').one();
+		const find = connect.connections.Find().filter('deleted_at', null, 'NULL');
+
+		properties.connection
+			? find.filter('id', properties.connection)
+			: find.filter('provider', action.Get('provider')).filter('status', 'active');
+
+		const connection = await find.one();
 
 		if(!connection)
 		{
-			return resolve(null, 'Connection not found.', 404);
+			return resolve(null, properties.connection ? 'Connection not found.' : 'Provider ' + action.Get('provider') + ' is not connected.', 404);
 		}
 
-		const result = await connect.actions.Fn('item.run', action, properties.connection, properties.input);
+		const result = await connect.actions.Fn('item.run', action, connection.Get('id'), properties.input);
 
 		resolve({ result }, 'Action ran.');
 	}
