@@ -185,7 +185,8 @@ elements.ItemAdd({
 						<div class="block" data-section="actions">
 							<e-global-heading title="Actions" description="What this provider can do once connected." element="h3" :border="true"></e-global-heading>
 							<e-status-empty ot-if="!actions.length" icon="bolt" title="No actions" description="This provider does not register any actions yet."></e-status-empty>
-							<div ot-for="action in actions" :ot-key="action.slug">
+							<div class="ot-flex-vertical ot-gap-m">
+								<div ot-for="action in actions" :ot-key="action.slug">
 								<e-core-section :title="action.name" :description="action.description" icon="bolt" :collapsible="true" :collapsed="true">
 									<div slot="content" class="ot-flex-vertical ot-gap-m">
 										<div ot-if="parameters(action.input).length" class="ot-flex-vertical ot-gap-s">
@@ -198,6 +199,7 @@ elements.ItemAdd({
 										</div>
 									</div>
 								</e-core-section>
+								</div>
 							</div>
 						</div>
 
