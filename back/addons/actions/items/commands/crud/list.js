@@ -8,6 +8,13 @@ commands.Item({
 	endpoint: '/api/connect/actions',
 	description: 'Lists the available actions, optionally filtered by provider.',
 	metadata: { addon: 'connect' },
+	condition: function()
+	{
+		if(!this.http || !this.http.state.user)
+		{
+			return 'Sign in to browse the catalog.';
+		}
+	},
 	in: {
 		provider: {
 			type: 'string',

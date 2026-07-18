@@ -8,6 +8,13 @@ commands.Item({
 	endpoint: '/api/connect/providers',
 	description: 'Lists every provider in the catalog.',
 	metadata: { addon: 'connect' },
+	condition: function()
+	{
+		if(!this.http || !this.http.state.user)
+		{
+			return 'Sign in to browse the catalog.';
+		}
+	},
 	in: {},
 	out: {
 		providers: {
