@@ -1,5 +1,5 @@
 commands.Item({
-	id: 'connect:list',
+	id: 'connect:connections:many',
 	description: 'Reads the instance connections and refreshes the front registry.',
 	metadata: { addon: 'connect.connections' },
 	out: {

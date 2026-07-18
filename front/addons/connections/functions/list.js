@@ -2,7 +2,7 @@ onetype.AddonReady('connect', (connect) =>
 {
 	connect.connections.Fn('list', async function()
 	{
-		const result = await $ot.command('connect:list', {}, true);
+		const result = await $ot.command('connect:connections:many', {}, true);
 
 		this.ItemsRemove();
 

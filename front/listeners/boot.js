@@ -1,13 +1,13 @@
 onetype.MiddlewareIntercept('boot', async (middleware) =>
 {
-	const providers = await $ot.command('connect:providers', {}, true);
+	const providers = await $ot.command('connect:providers:many', {}, true);
 
 	if(providers.code === 200)
 	{
 		connect.providers.ItemsAdd(providers.data.providers);
 	}
 
-	const actions = await $ot.command('connect:actions', {}, true);
+	const actions = await $ot.command('connect:actions:many', {}, true);
 
 	if(actions.code === 200)
 	{

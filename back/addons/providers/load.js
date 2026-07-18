@@ -4,4 +4,4 @@ import '#connect/addons/providers/addon.js';
 import '#connect/addons/providers/core/schemas/provider.js';
 
 /* Items */
-import '#connect/addons/providers/items/commands/crud/list.js';
+import '#connect/addons/providers/items/commands/crud/many.js';

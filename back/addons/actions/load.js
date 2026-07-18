@@ -7,5 +7,5 @@ import '#connect/addons/actions/core/schemas/action.js';
 import '#connect/addons/actions/item/functions/run.js';
 
 /* Items */
-import '#connect/addons/actions/items/commands/crud/list.js';
+import '#connect/addons/actions/items/commands/crud/many.js';
 import '#connect/addons/actions/items/commands/run.js';

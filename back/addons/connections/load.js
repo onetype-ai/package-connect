@@ -14,5 +14,5 @@ import '#connect/addons/connections/functions/revoke.js';
 /* Items */
 import '#connect/addons/connections/items/commands/link.js';
 import '#connect/addons/connections/items/commands/callback.js';
-import '#connect/addons/connections/items/commands/crud/list.js';
+import '#connect/addons/connections/items/commands/crud/many.js';
 import '#connect/addons/connections/items/commands/unlink.js';

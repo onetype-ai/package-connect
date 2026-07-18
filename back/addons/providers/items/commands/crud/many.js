@@ -2,7 +2,7 @@ import commands from '@onetype/framework/commands';
 import connect from '#connect/addon.js';
 
 commands.Item({
-	id: 'connect:providers',
+	id: 'connect:providers:many',
 	exposed: true,
 	method: 'GET',
 	endpoint: '/api/connect/providers',

@@ -76,11 +76,11 @@ The connection resolves automatically to the active one of the action provider â
 
 | Command | What it does |
 | --- | --- |
-| `connect:providers` | The provider catalog with tags, vault keys and overviews |
-| `connect:actions` | The action catalog with input and output schemas |
+| `connect:providers:many` | The provider catalog with tags, vault keys and overviews |
+| `connect:actions:many` | The action catalog with input and output schemas |
 | `connect:link` | Starts a connection â€” an authorize url for oauth2, direct storage for api_key |
 | `connect:callback` | OAuth redirect target, saves the connection and returns to the provider page |
-| `connect:list` | Active connections of the instance |
+| `connect:connections:many` | Active connections of the instance |
 | `connect:unlink` | Revokes a connection and clears its credentials |
 | `connect:run` | Runs an action against a connection |
 

@@ -1,5 +1,5 @@
 commands.Item({
-	id: 'connect:providers',
+	id: 'connect:providers:many',
 	description: 'Reads the provider catalog from the front registry.',
 	metadata: { addon: 'connect.providers' },
 	out: {

@@ -2,10 +2,10 @@ import commands from '@onetype/framework/commands';
 import connect from '#connect/addon.js';
 
 commands.Item({
-	id: 'connect:list',
+	id: 'connect:connections:many',
 	exposed: true,
 	method: 'GET',
-	endpoint: '/api/connect/list',
+	endpoint: '/api/connect/connections',
 	description: 'Lists the active connections of the instance.',
 	metadata: { addon: 'connect.connections' },
 	condition: function()
