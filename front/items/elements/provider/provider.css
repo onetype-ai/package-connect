@@ -1,0 +1,68 @@
+/* ===== CONNECT PROVIDER ===== */
+
+.e-fd3e98a
+{
+	display: block;
+	width: 100%;
+}
+
+.e-fd3e98a > .box
+{
+	display: flex;
+	flex-direction: column;
+}
+
+/* Columns */
+
+.e-fd3e98a .columns
+{
+	display: grid;
+	grid-template-columns: 240px minmax(0, 1fr);
+	gap: var(--ot-spacing-l);
+	align-items: start;
+}
+
+.e-fd3e98a .columns > .side
+{
+	position: sticky;
+	top: var(--ot-spacing-l);
+}
+
+.e-fd3e98a .columns > .content
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-l);
+	min-width: 0;
+}
+
+.e-fd3e98a .columns > .content > .block
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-m);
+	scroll-margin-top: var(--ot-spacing-l);
+}
+
+@media (max-width: 900px)
+{
+	.e-fd3e98a .columns
+	{
+		grid-template-columns: 1fr;
+	}
+
+	.e-fd3e98a .columns > .side
+	{
+		position: static;
+	}
+}
+
+/* Header band — the global header loses its frame and keeps only the bottom line */
+
+.e-fd3e98a .e-236b31a1 > .box
+{
+	padding: var(--ot-spacing-l) 0;
+	border: 0;
+	border-bottom: 1px solid var(--ot-bg-1-border);
+	border-radius: 0;
+}
