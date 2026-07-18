@@ -23,7 +23,7 @@ Create an app at [api.slack.com/apps](https://api.slack.com/apps), open **OAuth 
 	oauth2: {
 		authorize: 'https://slack.com/oauth/v2/authorize',
 		token: 'https://slack.com/api/oauth.v2.access',
-		scopes: 'chat:write,channels:read,channels:manage',
+		scopes: 'chat:write,channels:read,channels:manage,channels:join',
 		id: 'SLACK_CLIENT_ID',
 		secret: 'SLACK_CLIENT_SECRET',
 		normalize: function(data)

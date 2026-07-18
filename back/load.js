@@ -16,6 +16,7 @@ import '#connect/items/actions/slack/messages/update.js';
 import '#connect/items/actions/slack/messages/delete.js';
 import '#connect/items/actions/slack/messages/schedule.js';
 import '#connect/items/actions/slack/channels/list.js';
+import '#connect/items/actions/slack/channels/join.js';
 import '#connect/items/actions/slack/channels/info.js';
 import '#connect/items/actions/slack/channels/create.js';
 import '#connect/items/actions/slack/channels/invite.js';
