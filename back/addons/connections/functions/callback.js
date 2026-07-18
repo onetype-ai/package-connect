@@ -18,18 +18,27 @@ connect.connections.Fn('callback', async function(code, state)
 	}
 
 	const oauth2 = provider.Get('oauth2');
+	const client = await $ot.vault.get(oauth2.id);
+	const secret = await $ot.vault.get(oauth2.secret);
 
-	const response = await fetch(oauth2.token, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
-		body: new URLSearchParams({
-			grant_type: 'authorization_code',
-			code: code,
-			client_id: await $ot.vault.get(oauth2.id),
-			client_secret: await $ot.vault.get(oauth2.secret),
-			redirect_uri: await $ot.vault.get('CONNECT_REDIRECT')
-		})
+	const headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' };
+	const body = new URLSearchParams({
+		grant_type: 'authorization_code',
+		code: code,
+		redirect_uri: await $ot.vault.get('CONNECT_REDIRECT')
 	});
+
+	if(oauth2.exchange === 'basic')
+	{
+		headers['Authorization'] = 'Basic ' + Buffer.from(client + ':' + secret).toString('base64');
+	}
+	else
+	{
+		body.set('client_id', client);
+		body.set('client_secret', secret);
+	}
+
+	const response = await fetch(oauth2.token, { method: 'POST', headers, body });
 
 	if(!response.ok)
 	{

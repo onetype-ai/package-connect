@@ -16,16 +16,26 @@ connect.connections.Fn('refresh', async function(connection)
 		throw onetype.Error(400, 'Connection :id: has no refresh token, re-authorization required.', { id: connection.Get('id') });
 	}
 
-	const response = await fetch(oauth2.token, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams({
-			grant_type: 'refresh_token',
-			refresh_token: credentials.refresh_token,
-			client_id: await $ot.vault.get(oauth2.id),
-			client_secret: await $ot.vault.get(oauth2.secret)
-		})
+	const client = await $ot.vault.get(oauth2.id);
+	const secret = await $ot.vault.get(oauth2.secret);
+
+	const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+	const body = new URLSearchParams({
+		grant_type: 'refresh_token',
+		refresh_token: credentials.refresh_token
 	});
+
+	if(oauth2.exchange === 'basic')
+	{
+		headers['Authorization'] = 'Basic ' + Buffer.from(client + ':' + secret).toString('base64');
+	}
+	else
+	{
+		body.set('client_id', client);
+		body.set('client_secret', secret);
+	}
+
+	const response = await fetch(oauth2.refresh ? oauth2.refresh : oauth2.token, { method: 'POST', headers, body });
 
 	if(!response.ok)
 	{
