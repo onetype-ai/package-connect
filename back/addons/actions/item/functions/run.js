@@ -14,7 +14,7 @@ connect.actions.Fn('item.run', async function(action, connection, input = {})
 	const validated = schema && Object.keys(schema).length ? onetype.DataDefine(input, schema) : input;
 	const token = await connect.connections.Fn('token', connection);
 
-	return new Promise((resolve) =>
+	return new Promise((resolve, reject) =>
 	{
 		const done = (data) =>
 		{
@@ -23,6 +23,6 @@ connect.actions.Fn('item.run', async function(action, connection, input = {})
 			resolve(output && Object.keys(output).length ? onetype.DataDefine(data, output) : data);
 		};
 
-		action.Get('execute')({ token, input: validated, provider }, done);
+		Promise.resolve(action.Get('execute')({ token, input: validated, provider }, done)).catch(reject);
 	});
 });
