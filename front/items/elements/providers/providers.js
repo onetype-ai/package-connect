@@ -17,7 +17,7 @@ elements.ItemAdd({
 
 		this.load = async () =>
 		{
-			this.providers = $ot.connect.providers();
+			this.providers = $ot.connect.providers.list();
 
 			const keys = await $ot.vault.list();
 			const stored = {};
@@ -29,7 +29,7 @@ elements.ItemAdd({
 
 			this.stored = stored;
 
-			const connections = await $ot.connect.connections();
+			const connections = await $ot.connect.connections.list();
 			const linked = {};
 
 			for(const connection of connections)
@@ -95,7 +95,7 @@ elements.ItemAdd({
 						:badge="linked[provider.slug] ? 'Connected' : ''"
 						:isActive="!!linked[provider.slug]"
 						:tags="[...provider.tags, provider.auth === 'oauth2' ? 'OAuth' : 'API key']"
-						:meta="[$ot.connect.actions(provider.slug).length + ($ot.connect.actions(provider.slug).length === 1 ? ' action' : ' actions'), state(provider)]"
+						:meta="[$ot.connect.actions.list(provider.slug).length + ($ot.connect.actions.list(provider.slug).length === 1 ? ' action' : ' actions'), state(provider)]"
 						action="Open"
 						:_click="() => open(provider)"
 					></e-cards-extension>

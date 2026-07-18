@@ -24,7 +24,7 @@ elements.ItemAdd({
 
 		this.load = async () =>
 		{
-			const item = $ot.connect.provider(this.slug);
+			const item = $ot.connect.providers.get(this.slug);
 
 			if(!item)
 			{
@@ -32,12 +32,12 @@ elements.ItemAdd({
 			}
 
 			this.provider = item.Get(['slug', 'name', 'description', 'overview', 'tags', 'logo', 'icon', 'color', 'auth', 'vault']);
-			this.actions = $ot.connect.actions(this.slug);
+			this.actions = $ot.connect.actions.list(this.slug);
 
 			const wanted = this.provider.vault;
 			this.keys = (await $ot.vault.list()).filter((key) => wanted.includes(key.key));
 
-			const connections = await $ot.connect.connections();
+			const connections = await $ot.connect.connections.list();
 
 			this.connections = connections
 				.filter((entry) => entry.Get('provider') === this.slug)
@@ -105,7 +105,7 @@ elements.ItemAdd({
 			return Object.entries(schema || {}).map(([name, config]) => ({ name, ...config }));
 		};
 
-		this.connect = () => $ot.connect.link(this.slug);
+		this.connect = () => $ot.connect.connections.link(this.slug);
 
 		this.disconnect = async () =>
 		{
@@ -113,7 +113,7 @@ elements.ItemAdd({
 
 			if(ok)
 			{
-				await $ot.connect.unlink(this.connection.id);
+				await $ot.connect.connections.unlink(this.connection.id);
 				await this.load();
 			}
 		};

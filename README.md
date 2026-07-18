@@ -67,10 +67,7 @@ Input validates before the call, output validates after — an action can never 
 ## Running actions
 
 ```js
-await $ot.command('connect:run', {
-	action: 'slack:messages:send',
-	input: { channel: 'C01PSUYF08N', text: 'Hello from OneType 👋' }
-}, true);
+await $ot.connect.actions.run('slack:messages:send', { channel: 'C01PSUYF08N', text: 'Hello from OneType 👋' });
 ```
 
 The connection resolves automatically to the active one of the action provider — pass `connection` only to target a specific account.

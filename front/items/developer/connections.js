@@ -12,17 +12,17 @@ A connection is one authorized account against a provider. Credentials store enc
 
 ## Lifecycle
 
-1. **Link** — \`$ot.connect.link('slack')\` sends the browser to the provider authorize page; api_key providers store the key directly
+1. **Link** — \`$ot.connect.connections.link('slack')\` sends the browser to the provider authorize page; api_key providers store the key directly
 2. **Callback** — the provider redirects back, the code exchanges for a token and the browser returns to the provider page
 3. **Run** — actions execute against the active connection of their provider
-4. **Unlink** — \`$ot.connect.unlink(id)\` revokes the connection and clears its credentials
+4. **Unlink** — \`$ot.connect.connections.unlink(id)\` revokes the connection and clears its credentials
 
 ## Facade
 
 \`\`\`js
-await $ot.connect.connections();
-await $ot.connect.link('slack');
-await $ot.connect.unlink(1);
+await $ot.connect.connections.list();
+await $ot.connect.connections.link('slack');
+await $ot.connect.connections.unlink(1);
 \`\`\`
 
 ## Requirements

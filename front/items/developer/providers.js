@@ -42,8 +42,8 @@ The \`vault\` list drives the credentials section of the provider page and the r
 ## Facade
 
 \`\`\`js
-$ot.connect.providers();
-$ot.connect.provider('slack');
+$ot.connect.providers.list();
+$ot.connect.providers.get('slack');
 \`\`\`
 
 Both read the front registry the boot listener fills — no request per call.

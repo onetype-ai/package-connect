@@ -47,13 +47,10 @@ Throw inside execute to fail the run — the provider error message travels back
 ## Running
 
 \`\`\`js
-await $ot.command('connect:run', {
-	action: 'slack:messages:send',
-	input: { channel: 'C01PSUYF08N', text: 'Hello 👋' }
-});
+await $ot.connect.actions.run('slack:messages:send', { channel: 'C01PSUYF08N', text: 'Hello 👋' });
 \`\`\`
 
-The connection resolves automatically to the active one of the action provider — pass \`connection\` only to target a specific account. The catalog reads through \`$ot.connect.actions('slack')\`.
+The connection resolves automatically to the active one of the action provider — pass \`connection\` only to target a specific account. The catalog reads through \`$ot.connect.actions.list('slack')\`.
 		`
 	});
 });
