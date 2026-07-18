@@ -7,7 +7,7 @@ commands.Item({
 	method: 'GET',
 	endpoint: '/api/connect/list',
 	description: 'Lists the active connections of the instance.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.connections' },
 	condition: function()
 	{
 		if(!this.http.state.user)

@@ -1,7 +1,7 @@
 commands.Item({
 	id: 'connect:run',
 	description: 'Runs an action on the instance, against the active connection of the action provider.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.actions' },
 	in: {
 		action: {
 			type: 'string',

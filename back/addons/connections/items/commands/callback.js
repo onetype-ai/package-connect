@@ -8,7 +8,7 @@ commands.Item({
 	method: 'GET',
 	endpoint: '/api/connect/callback',
 	description: 'OAuth redirect target. Exchanges the authorization code for a token, saves the connection and sends the browser back to the provider page.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.connections' },
 	in: {
 		code: {
 			type: 'string',

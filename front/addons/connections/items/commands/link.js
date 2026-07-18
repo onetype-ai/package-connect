@@ -1,7 +1,7 @@
 commands.Item({
 	id: 'connect:link',
 	description: 'Starts a connection: sends the browser to the authorize url for oauth2 providers, or stores the credentials directly for api_key providers.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.connections' },
 	in: {
 		provider: {
 			type: 'string',

@@ -8,7 +8,7 @@ commands.Item({
 	method: 'POST',
 	endpoint: '/api/connect/run',
 	description: 'Runs an action against a connection, defaulting to the active connection of the action provider, and returns the action output.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.actions' },
 	condition: function()
 	{
 		if(!this.http.state.user)

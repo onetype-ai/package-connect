@@ -9,7 +9,7 @@ commands.Item({
 	method: 'POST',
 	endpoint: '/api/connect/link',
 	description: 'Starts a connection: returns the OAuth authorize url for oauth2 providers, or stores the credentials directly for api_key providers.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.connections' },
 	condition: function()
 	{
 		if(!this.http.state.user)

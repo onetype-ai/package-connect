@@ -1,7 +1,7 @@
 commands.Item({
 	id: 'connect:unlink',
 	description: 'Revokes a connection on the instance and refreshes the front registry.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.connections' },
 	in: {
 		id: {
 			type: 'number',

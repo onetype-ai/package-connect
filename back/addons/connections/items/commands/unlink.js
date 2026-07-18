@@ -7,7 +7,7 @@ commands.Item({
 	method: 'POST',
 	endpoint: '/api/connect/unlink',
 	description: 'Revokes a connection and clears its credentials.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.connections' },
 	condition: function()
 	{
 		if(!this.http.state.user)

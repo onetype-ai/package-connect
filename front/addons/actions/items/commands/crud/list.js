@@ -1,7 +1,7 @@
 commands.Item({
 	id: 'connect:actions',
 	description: 'Reads the action catalog from the front registry, optionally filtered by provider.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.actions' },
 	in: {
 		provider: {
 			type: 'string',

@@ -7,7 +7,7 @@ commands.Item({
 	method: 'GET',
 	endpoint: '/api/connect/providers',
 	description: 'Lists every provider in the catalog.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.providers' },
 	condition: function()
 	{
 		if(!this.http || !this.http.state.user)

@@ -7,7 +7,7 @@ commands.Item({
 	method: 'GET',
 	endpoint: '/api/connect/actions',
 	description: 'Lists the available actions, optionally filtered by provider.',
-	metadata: { addon: 'connect' },
+	metadata: { addon: 'connect.actions' },
 	condition: function()
 	{
 		if(!this.http || !this.http.state.user)
