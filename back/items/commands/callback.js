@@ -1,6 +1,6 @@
 import onetype from '@onetype/framework';
 import commands from '@onetype/framework/commands';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:callback',
@@ -30,7 +30,7 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const connection = await connections.Fn('callback', properties.code, properties.state);
+		const connection = await connect.connections.Fn('callback', properties.code, properties.state);
 
 		resolve({ connection: connection.Get(['id', 'provider', 'status', 'scopes', 'metadata', 'expires_at', 'created_at']) }, 'Connection linked.');
 	}

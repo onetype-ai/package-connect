@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import actions from '#connect/actions/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:actions',
@@ -26,13 +26,13 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		let items = Object.values(actions.Items());
+		let items = Object.values(connect.actions.Items());
 
 		if(properties.provider)
 		{
 			items = items.filter((item) => item.Get('provider') === properties.provider);
 		}
 
-		resolve({ actions: items.map((item) => item.Get(['slug', 'provider', 'name', 'description'])) });
+		resolve({ actions: items.map((item) => item.Get(['slug', 'provider', 'name', 'description', 'input', 'output'])) });
 	}
 });

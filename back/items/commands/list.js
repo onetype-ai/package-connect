@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:list',
@@ -28,7 +28,7 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const items = await connections.Find()
+		const items = await connect.connections.Find()
 			.filter('deleted_at', null, 'NULL')
 			.sort('created_at', 'DESC')
 			.many();

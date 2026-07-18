@@ -1,10 +1,9 @@
 import onetype from '@onetype/framework';
-import connections from '#connect-back/connections/addon.js';
-import providers from '#connect/providers/addon.js';
+import connect from '#connect/addon.js';
 
-connections.Fn('refresh', async function(connection)
+connect.connections.Fn('refresh', async function(connection)
 {
-	const provider = providers.ItemGet(connection.Get('provider'));
+	const provider = connect.providers.ItemGet(connection.Get('provider'));
 	const oauth2 = provider.Get('oauth2');
 	const credentials = this.Fn('decrypt', connection.Get('credentials'));
 

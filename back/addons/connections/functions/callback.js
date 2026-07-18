@@ -1,8 +1,7 @@
 import onetype from '@onetype/framework';
-import connections from '#connect-back/connections/addon.js';
-import providers from '#connect/providers/addon.js';
+import connect from '#connect/addon.js';
 
-connections.Fn('callback', async function(code, state)
+connect.connections.Fn('callback', async function(code, state)
 {
 	const [slug] = String(state).split(':');
 
@@ -11,7 +10,7 @@ connections.Fn('callback', async function(code, state)
 		throw onetype.Error(400, 'Invalid state parameter.');
 	}
 
-	const provider = providers.ItemGet(slug);
+	const provider = connect.providers.ItemGet(slug);
 
 	if(!provider)
 	{
@@ -39,7 +38,7 @@ connections.Fn('callback', async function(code, state)
 
 	const normalized = oauth2.normalize(await response.json());
 
-	const connection = connections.Item({
+	const connection = connect.connections.Item({
 		provider: slug,
 		status: 'active',
 		credentials: this.Fn('encrypt', {

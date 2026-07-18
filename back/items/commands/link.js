@@ -1,8 +1,7 @@
 import crypto from 'crypto';
 import onetype from '@onetype/framework';
 import commands from '@onetype/framework/commands';
-import providers from '#connect/providers/addon.js';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:link',
@@ -49,7 +48,7 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const provider = providers.ItemGet(properties.provider);
+		const provider = connect.providers.ItemGet(properties.provider);
 
 		if(!provider)
 		{
@@ -86,10 +85,10 @@ commands.Item({
 				return resolve(null, 'A token is required for this provider.', 400);
 			}
 
-			const connection = connections.Item({
+			const connection = connect.connections.Item({
 				provider: properties.provider,
 				status: 'active',
-				credentials: connections.Fn('encrypt', properties.credentials),
+				credentials: connect.connections.Fn('encrypt', properties.credentials),
 				scopes: '',
 				metadata: {}
 			});

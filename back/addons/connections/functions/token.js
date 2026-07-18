@@ -1,10 +1,9 @@
 import onetype from '@onetype/framework';
-import connections from '#connect-back/connections/addon.js';
-import providers from '#connect/providers/addon.js';
+import connect from '#connect/addon.js';
 
-connections.Fn('token', async function(id)
+connect.connections.Fn('token', async function(id)
 {
-	const connection = await connections.Find().filter('id', id).filter('deleted_at', null, 'NULL').one();
+	const connection = await connect.connections.Find().filter('id', id).filter('deleted_at', null, 'NULL').one();
 
 	if(!connection)
 	{
@@ -16,7 +15,7 @@ connections.Fn('token', async function(id)
 		throw onetype.Error(400, 'Connection :id: is not active.', { id });
 	}
 
-	const provider = providers.ItemGet(connection.Get('provider'));
+	const provider = connect.providers.ItemGet(connection.Get('provider'));
 	const credentials = this.Fn('decrypt', connection.Get('credentials'));
 
 	if(provider.Get('auth') === 'api_key')

@@ -1,7 +1,7 @@
 import onetype from '@onetype/framework';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
-connections.Fn('encrypt', function(data)
+connect.connections.Fn('encrypt', function(data)
 {
 	return onetype.Encrypt(data, process.env.CONNECT_KEY);
 });

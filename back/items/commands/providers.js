@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import providers from '#connect/providers/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:providers',
@@ -21,6 +21,16 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		resolve({ providers: Object.values(providers.Items()).map((item) => item.Get(['slug', 'name', 'description', 'icon', 'color', 'auth'])) });
+		const providers = Object.values(connect.providers.Items()).map((item) =>
+		{
+			const oauth2 = item.Get('oauth2');
+
+			return {
+				...item.Get(['slug', 'name', 'description', 'overview', 'tags', 'logo', 'icon', 'color', 'auth']),
+				keys: [oauth2 ? oauth2.id : null, oauth2 ? oauth2.secret : null].filter(Boolean)
+			};
+		});
+
+		resolve({ providers });
 	}
 });

@@ -1,11 +1,9 @@
 import onetype from '@onetype/framework';
-import actions from '#connect/actions/addon.js';
-import connections from '#connect-back/connections/addon.js';
-import providers from '#connect/providers/addon.js';
+import connect from '#connect/addon.js';
 
-actions.Fn('item.run', async function(action, connection, input = {})
+connect.actions.Fn('item.run', async function(action, connection, input = {})
 {
-	const provider = providers.ItemGet(action.Get('provider'));
+	const provider = connect.providers.ItemGet(action.Get('provider'));
 
 	if(!provider)
 	{
@@ -14,7 +12,7 @@ actions.Fn('item.run', async function(action, connection, input = {})
 
 	const schema = action.Get('input');
 	const validated = schema && Object.keys(schema).length ? onetype.DataDefine(input, schema) : input;
-	const token = await connections.Fn('token', connection);
+	const token = await connect.connections.Fn('token', connection);
 
 	return new Promise((resolve) =>
 	{

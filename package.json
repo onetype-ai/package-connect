@@ -10,8 +10,7 @@
         "url": "https://github.com/onetype-ai/package-connect.git"
     },
     "imports": {
-        "#connect/*": "./shared/addons/*",
-        "#connect-back/*": "./back/addons/*"
+        "#connect/*": "./back/*"
     },
     "peerDependencies": {
         "@onetype/framework": ">=2.0.0",

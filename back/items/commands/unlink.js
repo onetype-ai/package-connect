@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:unlink',
@@ -30,14 +30,14 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const connection = await connections.Find().filter('id', properties.id).filter('deleted_at', null, 'NULL').one();
+		const connection = await connect.connections.Find().filter('id', properties.id).filter('deleted_at', null, 'NULL').one();
 
 		if(!connection)
 		{
 			return resolve(null, 'Connection not found.', 404);
 		}
 
-		await connections.Fn('revoke', properties.id);
+		await connect.connections.Fn('revoke', properties.id);
 
 		resolve({ success: true }, 'Connection revoked.');
 	}

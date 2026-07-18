@@ -1,9 +1,9 @@
 import onetype from '@onetype/framework';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
-connections.Fn('revoke', async function(id)
+connect.connections.Fn('revoke', async function(id)
 {
-	const connection = await connections.Find().filter('id', id).filter('deleted_at', null, 'NULL').one();
+	const connection = await connect.connections.Find().filter('id', id).filter('deleted_at', null, 'NULL').one();
 
 	if(!connection)
 	{

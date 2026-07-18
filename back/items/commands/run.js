@@ -1,7 +1,6 @@
 import onetype from '@onetype/framework';
 import commands from '@onetype/framework/commands';
-import actions from '#connect/actions/addon.js';
-import connections from '#connect-back/connections/addon.js';
+import connect from '#connect/addon.js';
 
 commands.Item({
 	id: 'connect:run',
@@ -42,21 +41,21 @@ commands.Item({
 	},
 	callback: async function(properties, resolve)
 	{
-		const action = actions.ItemGet(properties.action);
+		const action = connect.actions.ItemGet(properties.action);
 
 		if(!action)
 		{
 			return resolve(null, 'Action ' + properties.action + ' not found.', 404);
 		}
 
-		const connection = await connections.Find().filter('id', properties.connection).filter('deleted_at', null, 'NULL').one();
+		const connection = await connect.connections.Find().filter('id', properties.connection).filter('deleted_at', null, 'NULL').one();
 
 		if(!connection)
 		{
 			return resolve(null, 'Connection not found.', 404);
 		}
 
-		const result = await actions.Fn('item.run', action, properties.connection, properties.input);
+		const result = await connect.actions.Fn('item.run', action, properties.connection, properties.input);
 
 		resolve({ result }, 'Action ran.');
 	}
