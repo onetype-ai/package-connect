@@ -133,6 +133,7 @@ elements.ItemAdd({
 					:meta="[provider.auth === 'oauth2' ? 'OAuth' : 'API key', actions.length + (actions.length === 1 ? ' action' : ' actions')]"
 					:background="1"
 					container="m"
+					pattern="dots"
 				>
 					<div slot="top">
 						<e-navigation-breadcrumbs :items="crumbs()"></e-navigation-breadcrumbs>
