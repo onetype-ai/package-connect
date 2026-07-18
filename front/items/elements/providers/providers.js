@@ -12,11 +12,22 @@ elements.ItemAdd({
 	{
 		this.providers = [];
 		this.linked = {};
-		this.loading = true;
+		this.stored = {};
+		this.tag = 'all';
 
 		this.load = async () =>
 		{
 			this.providers = $ot.connect.providers();
+
+			const keys = await $ot.vault.list();
+			const stored = {};
+
+			for(const key of keys)
+			{
+				stored[key.key] = key.filled;
+			}
+
+			this.stored = stored;
 
 			const connections = await $ot.connect.connections();
 			const linked = {};
@@ -27,71 +38,67 @@ elements.ItemAdd({
 			}
 
 			this.linked = linked;
-			this.loading = false;
 		};
 
-		this.connect = (provider) =>
+		this.state = (provider) =>
 		{
-			$ot.connect.link(provider.slug);
-		};
+			const connection = this.linked[provider.slug];
 
-		this.disconnect = async (provider) =>
-		{
-			const ok = await $ot.float.confirm('Disconnect ' + provider.name + '?', { icon: 'link_off', confirm: 'Disconnect', danger: true });
-
-			if(ok)
+			if(connection)
 			{
-				await $ot.connect.unlink(this.linked[provider.slug].id);
-				await this.load();
+				return connection.metadata && connection.metadata.name ? 'Connected as ' + connection.metadata.name : 'Connected';
 			}
+
+			return provider.keys.every((key) => this.stored[key]) ? 'Ready to connect' : 'Setup needed';
+		};
+
+		this.filters = () =>
+		{
+			const counts = {};
+
+			this.providers.forEach((provider) => provider.tags.forEach((tag) => counts[tag] = (counts[tag] || 0) + 1));
+
+			return [
+				{ id: 'all', label: 'All', count: this.providers.length },
+				...Object.entries(counts).map(([tag, count]) => ({ id: tag, label: tag, count }))
+			];
+		};
+
+		this.filter = ({ value }) => this.tag = value;
+
+		this.filtered = () =>
+		{
+			return this.tag === 'all' ? this.providers : this.providers.filter((provider) => provider.tags.includes(this.tag));
+		};
+
+		this.open = (provider) =>
+		{
+			$ot.ui.screens.open('connect.provider', { slug: provider.slug });
 		};
 
 		this.OnReady(() => this.load());
 
-		return `
-			<div class="box">
-				<div class="head">
-					<h1>Providers</h1>
-					<p>Connect an external service to run its actions from anywhere in the platform.</p>
-				</div>
-
-				<div ot-if="loading" class="loading"><i class="spin">progress_activity</i></div>
-
-				<div ot-if="!loading" class="grid">
-					<div
-						ot-for="provider in providers"
+		return /* html */ `
+			<div class="ot-flex-vertical ot-gap-m ot-container-m ot-py-l">
+				<e-global-heading title="Providers" description="Connect an external service to run its actions from anywhere in the platform." :border="true"></e-global-heading>
+				<e-global-tags :items="filters()" :active="tag" :background="3" :_change="filter"></e-global-tags>
+				<div class="ot-grid-auto-m">
+					<e-cards-extension
+						ot-for="provider in filtered()"
 						:ot-key="provider.slug"
-						:class="linked[provider.slug] ? 'card linked' : 'card'"
-						:style="'--accent: ' + provider.color"
-					>
-						<div class="top">
-							<span class="logo"><i>{{ provider.icon }}</i></span>
-							<span ot-if="linked[provider.slug]" class="badge"><i>check_circle</i>Connected</span>
-						</div>
-						<div class="body">
-							<span class="name">{{ provider.name }}</span>
-							<span class="description">{{ provider.description }}</span>
-						</div>
-						<div class="foot">
-							<e-form-button
-								ot-if="!linked[provider.slug]"
-								text="Connect"
-								icon="add_link"
-								tone="solid"
-								:stretch="true"
-								:_click="() => connect(provider)"
-							></e-form-button>
-							<e-form-button
-								ot-if="linked[provider.slug]"
-								text="Disconnect"
-								icon="link_off"
-								color="red"
-								tone="soft"
-								:stretch="true"
-								:_click="() => disconnect(provider)"
-							></e-form-button>
-						</div>
-					</div>
+						:icon="provider.icon"
+						:image="provider.logo"
+						:accent="provider.color"
+						eyebrow="Provider"
+						:title="provider.name"
+						:description="provider.description"
+						:badge="linked[provider.slug] ? 'Connected' : ''"
+						:isActive="!!linked[provider.slug]"
+						:tags="[...provider.tags, provider.auth === 'oauth2' ? 'OAuth' : 'API key']"
+						:meta="[$ot.connect.actions(provider.slug).length + ($ot.connect.actions(provider.slug).length === 1 ? ' action' : ' actions'), state(provider)]"
+						action="Open"
+						:_click="() => open(provider)"
+					></e-cards-extension>
 				</div>
 			</div>
 		`;

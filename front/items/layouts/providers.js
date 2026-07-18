@@ -3,7 +3,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 	layouts.Item({
 		id: 'connect-providers',
 		isActive: true,
-		condition: { app: ['connect'], mode: ['providers'] },
+		screen: ['connect.providers'],
 		zone: 'root',
 		slot: 'center',
 		render: function()

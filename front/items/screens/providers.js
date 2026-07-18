@@ -4,7 +4,6 @@ onetype.AddonReady('ui.screens', (screens) =>
 		id: 'connect.providers',
 		route: '/connect/providers',
 		app: 'connect',
-		mode: 'providers',
 		isDefault: true,
 		metadata: { addon: 'connect' }
 	});
