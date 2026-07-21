@@ -1,7 +1,7 @@
 import '#connect/addons/connections/addon.js';
 
 /* Core */
-import '#connect/addons/connections/core/schemas/connection.js';
+import '#connect/addons/connections/_/schemas/connection.js';
 
 /* Functions */
 import '#connect/addons/connections/functions/encrypt.js';
