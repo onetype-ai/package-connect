@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('connect.provider', {
+onetype.SchemasRegister('connect.provider', {
 	slug: {
 		type: 'string',
 		description: 'Stable text key of the provider, like slack or github.'

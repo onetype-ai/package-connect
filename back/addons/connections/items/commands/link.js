@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-import onetype from '@onetype/framework';
 import commands from '@onetype/framework/commands';
 import connect from '#connect/addon.js';
 

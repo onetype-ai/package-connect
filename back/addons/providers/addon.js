@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 onetype.AddonReady('connect', (connect) =>
 {
 	connect.providers = onetype.Addon('connect.providers', (addon) =>

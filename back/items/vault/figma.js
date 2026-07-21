@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 onetype.AddonReady('vault.keys', (keys) =>
 {
 	keys.Item({

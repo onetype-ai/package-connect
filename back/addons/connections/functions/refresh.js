@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import connect from '#connect/addon.js';
 
 connect.connections.Fn('refresh', async function(connection)

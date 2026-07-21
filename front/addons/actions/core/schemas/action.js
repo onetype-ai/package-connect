@@ -1,4 +1,4 @@
-onetype.DataSchema('connect.action', {
+onetype.SchemasRegister('connect.action', {
 	slug: {
 		type: 'string',
 		description: 'Stable text key of the action, like slack:messages:send.'

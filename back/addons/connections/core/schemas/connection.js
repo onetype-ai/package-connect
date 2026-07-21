@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('connect.connection', {
+onetype.SchemasRegister('connect.connection', {
 	id: {
 		type: 'number',
 		description: 'Unique connection id.'
