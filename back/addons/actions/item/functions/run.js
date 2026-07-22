@@ -2,26 +2,26 @@ import connect from '#connect/addon.js';
 
 connect.actions.Fn('item.run', async function(action, connection, input = {})
 {
-	const provider = connect.providers.ItemGet(action.Get('provider'));
+    const provider = connect.providers.ItemGet(action.Get('provider'));
 
-	if(!provider)
-	{
-		throw onetype.Error(404, 'Provider :provider: not found for action :action:.', { provider: action.Get('provider'), action: action.Get('slug') });
-	}
+    if(!provider)
+    {
+        throw onetype.Error(404, 'Provider :provider: not found for action :action:.', { provider: action.Get('provider'), action: action.Get('slug') });
+    }
 
-	const schema = action.Get('input');
-	const validated = schema && Object.keys(schema).length ? onetype.DataDefine(input, schema) : input;
-	const token = await connect.connections.Fn('token', connection);
+    const schema = action.Get('input');
+    const validated = schema && Object.keys(schema).length ? onetype.DataDefine(input, schema) : input;
+    const token = await connect.connections.Fn('token', connection);
 
-	return new Promise((resolve, reject) =>
-	{
-		const done = (data) =>
-		{
-			const output = action.Get('output');
+    return new Promise((resolve, reject) =>
+    {
+        const done = (data) =>
+        {
+            const output = action.Get('output');
 
-			resolve(output && Object.keys(output).length ? onetype.DataDefine(data, output) : data);
-		};
+            resolve(output && Object.keys(output).length ? onetype.DataDefine(data, output) : data);
+        };
 
-		Promise.resolve(action.Get('execute')({ token, input: validated, provider }, done)).catch(reject);
-	});
+        Promise.resolve(action.Get('execute')({ token, input: validated, provider }, done)).catch(reject);
+    });
 });

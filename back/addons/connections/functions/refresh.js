@@ -2,66 +2,66 @@ import connect from '#connect/addon.js';
 
 connect.connections.Fn('refresh', async function(connection)
 {
-	const provider = connect.providers.ItemGet(connection.Get('provider'));
-	const oauth2 = provider.Get('oauth2');
-	const credentials = this.Fn('decrypt', connection.Get('credentials'));
+    const provider = connect.providers.ItemGet(connection.Get('provider'));
+    const oauth2 = provider.Get('oauth2');
+    const credentials = this.Fn('decrypt', connection.Get('credentials'));
 
-	if(!credentials.refresh_token)
-	{
-		connection.Set('status', 'expired');
+    if(!credentials.refresh_token)
+    {
+        connection.Set('status', 'expired');
 
-		await connection.Update();
+        await connection.Update();
 
-		throw onetype.Error(400, 'Connection :id: has no refresh token, re-authorization required.', { id: connection.Get('id') });
-	}
+        throw onetype.Error(400, 'Connection :id: has no refresh token, re-authorization required.', { id: connection.Get('id') });
+    }
 
-	const client = await $ot.vault.get(oauth2.id);
-	const secret = await $ot.vault.get(oauth2.secret);
+    const client = await $ot.vault.get(oauth2.id);
+    const secret = await $ot.vault.get(oauth2.secret);
 
-	const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-	const body = new URLSearchParams({
-		grant_type: 'refresh_token',
-		refresh_token: credentials.refresh_token
-	});
+    const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+    const body = new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: credentials.refresh_token
+    });
 
-	if(oauth2.exchange === 'basic')
-	{
-		headers['Authorization'] = 'Basic ' + Buffer.from(client + ':' + secret).toString('base64');
-	}
-	else
-	{
-		body.set('client_id', client);
-		body.set('client_secret', secret);
-	}
+    if(oauth2.exchange === 'basic')
+    {
+        headers['Authorization'] = 'Basic ' + Buffer.from(client + ':' + secret).toString('base64');
+    }
+    else
+    {
+        body.set('client_id', client);
+        body.set('client_secret', secret);
+    }
 
-	const response = await fetch(oauth2.refresh ? oauth2.refresh : oauth2.token, { method: 'POST', headers, body });
+    const response = await fetch(oauth2.refresh ? oauth2.refresh : oauth2.token, { method: 'POST', headers, body });
 
-	if(!response.ok)
-	{
-		connection.Set('status', 'expired');
+    if(!response.ok)
+    {
+        connection.Set('status', 'expired');
 
-		await connection.Update();
+        await connection.Update();
 
-		throw onetype.Error(502, 'Token refresh failed for connection :id:.', { id: connection.Get('id') });
-	}
+        throw onetype.Error(502, 'Token refresh failed for connection :id:.', { id: connection.Get('id') });
+    }
 
-	const data = await response.json();
+    const data = await response.json();
 
-	const updated = {
-		access_token: data.access_token,
-		refresh_token: data.refresh_token ? data.refresh_token : credentials.refresh_token,
-		token_type: data.token_type ? data.token_type : 'Bearer'
-	};
+    const updated = {
+        access_token: data.access_token,
+        refresh_token: data.refresh_token ? data.refresh_token : credentials.refresh_token,
+        token_type: data.token_type ? data.token_type : 'Bearer'
+    };
 
-	connection.Set('credentials', this.Fn('encrypt', updated));
-	connection.Set('status', 'active');
+    connection.Set('credentials', this.Fn('encrypt', updated));
+    connection.Set('status', 'active');
 
-	if(data.expires_in)
-	{
-		connection.Set('expires_at', new Date(Date.now() + data.expires_in * 1000).toISOString());
-	}
+    if(data.expires_in)
+    {
+        connection.Set('expires_at', new Date(Date.now() + data.expires_in * 1000).toISOString());
+    }
 
-	await connection.Update();
+    await connection.Update();
 
-	return updated;
+    return updated;
 });

@@ -1,11 +1,11 @@
 onetype.AddonReady('developer.addons', (developer) =>
 {
-	developer.Item({
-		id: 'connect.connections',
-		group: 'connect',
-		name: 'Connections',
-		description: 'Authorized accounts of the instance: encrypted credentials, token refresh and the link and unlink lifecycle.',
-		content: `
+    developer.Item({
+        id: 'connect.connections',
+        group: 'connect',
+        name: 'Connections',
+        description: 'Authorized accounts of the instance: encrypted credentials, token refresh and the link and unlink lifecycle.',
+        content: `
 ## What it does
 
 A connection is one authorized account against a provider. Credentials store encrypted with the instance \`CONNECT_KEY\` and never leave the back — actions receive a live token that refreshes itself five minutes before it expires.
@@ -28,6 +28,6 @@ await $ot.connect.connections.unlink(1);
 ## Requirements
 
 The instance needs a \`CONNECT_KEY\` environment variable — a 32-byte hex key the credentials encrypt with. OAuth providers need the callback url \`/api/connect/callback\` registered in their app settings, over https.
-		`
-	});
+        `
+    });
 });
