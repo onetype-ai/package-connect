@@ -16,11 +16,11 @@ onetype.SchemasRegister('connect.action', {
         description: 'Short one line description of what the action does.'
     },
     input: {
-        type: 'object',
+        type: 'json',
         description: 'Typed schema of the parameters the action accepts.'
     },
     output: {
-        type: 'object',
+        type: 'json',
         description: 'Typed schema of the data the action returns.'
     }
 });

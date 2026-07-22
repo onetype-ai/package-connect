@@ -16,7 +16,7 @@ onetype.SchemasRegister('connect.connection', {
         description: 'Scopes granted to the connection.'
     },
     metadata: {
-        type: 'object',
+        type: 'json',
         description: 'Metadata about the connected account.'
     },
     created_at: {
