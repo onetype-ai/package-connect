@@ -81,4 +81,3 @@ onetype.AddonReady('connect', (connect) =>
         addon.Schema('index (provider)');
     });
 });
-

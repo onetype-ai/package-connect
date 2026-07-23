@@ -1,7 +1,5 @@
 import '#connect/addons/actions/addon.js';
-
-/* Core */
-import '#connect/addons/actions/_/schemas/action.js';
+import '#connect/addons/actions/items/onetype-schemas/connect.action.js';
 
 /* Item */
 import '#connect/addons/actions/item/functions/run.js';

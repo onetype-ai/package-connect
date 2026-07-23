@@ -1,7 +1,5 @@
 import '#connect/addons/providers/addon.js';
-
-/* Core */
-import '#connect/addons/providers/_/schemas/provider.js';
+import '#connect/addons/providers/items/onetype-schemas/connect.provider.js';
 
 /* Functions */
 import '#connect/addons/providers/functions/merge.js';

@@ -7,7 +7,6 @@
 	"status": "disabled",
 	"depends": [
 		"onetype/vault",
-		"onetype/elements",
 		"onetype/admin"
 	],
 	"runtimes": [

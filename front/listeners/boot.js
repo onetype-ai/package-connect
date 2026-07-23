@@ -1,4 +1,4 @@
-onetype.MiddlewareIntercept('boot', async (middleware) =>
+onetype.middlewares.intercept('boot', async (middleware) =>
 {
     const providers = await $ot.command('connect:providers:many', {}, true);
 

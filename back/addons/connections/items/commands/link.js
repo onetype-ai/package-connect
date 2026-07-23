@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import commands from '@onetype/framework/commands';
+import commands from 'addon-commands';
 import connect from '#connect/addon.js';
 
 commands.Item({

@@ -49,4 +49,3 @@ onetype.AddonReady('connect', (connect) =>
         });
     });
 });
-

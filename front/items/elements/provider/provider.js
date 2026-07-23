@@ -109,8 +109,8 @@ elements.ItemAdd({
         };
 
         this.crumbs = () => [
-            { label: 'Connect', icon: 'hub', onClick: () => $ot.ui.apps.open('connect') },
-            { label: 'Providers', onClick: () => $ot.ui.screens.open('connect.providers') },
+            { label: 'Connect', icon: 'hub', onClick: () => $ot.admin.apps.open('connect') },
+            { label: 'Providers', onClick: () => $ot.admin.screens.open('connect.providers') },
             { label: this.provider.name }
         ];
 
@@ -136,7 +136,7 @@ elements.ItemAdd({
 
         return /* html */ `
             <div ot-if="provider" class="box">
-                <e-global-header
+                <e-admin-global-header
                     :icon="provider.icon"
                     :image="provider.logo"
                     :accent="provider.color"
@@ -150,69 +150,69 @@ elements.ItemAdd({
                     pattern="dots"
                 >
                     <div slot="top">
-                        <e-navigation-breadcrumbs :items="crumbs()"></e-navigation-breadcrumbs>
+                        <e-admin-navigation-breadcrumbs :items="crumbs()"></e-admin-navigation-breadcrumbs>
                     </div>
                     <div slot="actions">
-                        <e-form-button ot-if="!connection" text="Connect" icon="add_link" tone="solid" :disabled="!ready()" :_click="() => connect()"></e-form-button>
-                        <e-form-button ot-if="connection" text="Disconnect" icon="link_off" color="red" tone="soft" :_click="() => disconnect()"></e-form-button>
+                        <e-admin-form-button ot-if="!connection" text="Connect" icon="add_link" tone="solid" :disabled="!ready()" :_click="() => connect()"></e-admin-form-button>
+                        <e-admin-form-button ot-if="connection" text="Disconnect" icon="link_off" color="red" tone="soft" :_click="() => disconnect()"></e-admin-form-button>
                     </div>
                     <div slot="bottom" class="ot-flex-vertical ot-gap-s">
-                        <e-global-tags :items="provider.tags.map((tag) => ({ id: tag, label: tag }))" :background="3"></e-global-tags>
-                        <e-global-notice ot-if="!ready()" title="Setup required" text="Fill in the missing credentials in the vault before connecting." color="orange"></e-global-notice>
+                        <e-admin-global-tags :items="provider.tags.map((tag) => ({ id: tag, label: tag }))" :background="3"></e-admin-global-tags>
+                        <e-admin-global-notice ot-if="!ready()" title="Setup required" text="Fill in the missing credentials in the vault before connecting." color="orange"></e-admin-global-notice>
                     </div>
-                </e-global-header>
+                </e-admin-global-header>
 
                 <div class="columns ot-container-m ot-py-l">
                     <aside class="side">
-                        <e-views-sidebar :items="sections()" :active="section" :_select="jump"></e-views-sidebar>
+                        <e-admin-views-sidebar :items="sections()" :active="section" :_select="jump"></e-admin-views-sidebar>
                     </aside>
 
                     <div class="content">
                         <div class="block" data-section="overview">
-                            <e-global-markdown ot-if="provider.overview" :content="provider.overview" :background="0"></e-global-markdown>
+                            <e-admin-global-markdown ot-if="provider.overview" :content="provider.overview" :background="0"></e-admin-global-markdown>
                         </div>
 
                         <div class="block" data-section="credentials">
-                            <e-global-heading title="Credentials" description="Keys this provider reads from the vault." element="h3" :border="true">
+                            <e-admin-global-heading title="Credentials" description="Keys this provider reads from the vault." element="h3" :border="true">
                                 <div slot="right">
-                                    <e-form-button text="Open Vault" icon="lock" tone="soft" :_click="() => $ot.ui.apps.open('vault')"></e-form-button>
+                                    <e-admin-form-button text="Open Vault" icon="lock" tone="soft" :_click="() => $ot.admin.apps.open('vault')"></e-admin-form-button>
                                 </div>
-                            </e-global-heading>
-                            <e-global-parameters ot-if="keys.length" :items="credentials()" :background="1"></e-global-parameters>
-                            <e-status-empty ot-if="!keys.length" icon="key" title="No credentials" description="This provider does not read any keys from the vault."></e-status-empty>
+                            </e-admin-global-heading>
+                            <e-admin-global-parameters ot-if="keys.length" :items="credentials()" :background="1"></e-admin-global-parameters>
+                            <e-admin-status-empty ot-if="!keys.length" icon="key" title="No credentials" description="This provider does not read any keys from the vault."></e-admin-status-empty>
                         </div>
 
                         <div class="block" data-section="actions">
-                            <e-global-heading title="Actions" description="What this provider can do once connected." element="h3" :border="true"></e-global-heading>
-                            <e-status-empty ot-if="!actions.length" icon="bolt" title="No actions" description="This provider does not register any actions yet."></e-status-empty>
+                            <e-admin-global-heading title="Actions" description="What this provider can do once connected." element="h3" :border="true"></e-admin-global-heading>
+                            <e-admin-status-empty ot-if="!actions.length" icon="bolt" title="No actions" description="This provider does not register any actions yet."></e-admin-status-empty>
                             <div class="ot-flex-vertical ot-gap-s">
                                 <div ot-for="action in actions" :ot-key="action.slug">
-                                <e-core-section :title="action.name" :description="action.description" icon="bolt" :collapsible="true" :collapsed="true">
+                                <e-admin-core-section :title="action.name" :description="action.description" icon="bolt" :collapsible="true" :collapsed="true">
                                     <div slot="content" class="ot-flex-vertical ot-gap-m">
                                         <div ot-if="parameters(action.input).length" class="ot-flex-vertical ot-gap-s">
-                                            <e-global-heading title="Input" element="h3"></e-global-heading>
-                                            <e-global-parameters :items="parameters(action.input)" :background="2"></e-global-parameters>
+                                            <e-admin-global-heading title="Input" element="h3"></e-admin-global-heading>
+                                            <e-admin-global-parameters :items="parameters(action.input)" :background="2"></e-admin-global-parameters>
                                         </div>
                                         <div ot-if="parameters(action.output).length" class="ot-flex-vertical ot-gap-s">
-                                            <e-global-heading title="Output" element="h3"></e-global-heading>
-                                            <e-global-parameters :items="parameters(action.output)" :background="2"></e-global-parameters>
+                                            <e-admin-global-heading title="Output" element="h3"></e-admin-global-heading>
+                                            <e-admin-global-parameters :items="parameters(action.output)" :background="2"></e-admin-global-parameters>
                                         </div>
                                     </div>
-                                </e-core-section>
+                                </e-admin-core-section>
                                 </div>
                             </div>
                         </div>
 
                         <div class="block" data-section="scopes">
-                            <e-global-heading title="Scopes" description="Permissions requested when the provider connects." element="h3" :border="true"></e-global-heading>
-                            <e-views-list ot-if="provider.scopes.length" :items="scopeRows()" :background="1"></e-views-list>
-                            <e-status-empty ot-if="!provider.scopes.length" icon="verified_user" title="No scopes" description="This provider does not request any oauth scopes."></e-status-empty>
+                            <e-admin-global-heading title="Scopes" description="Permissions requested when the provider connects." element="h3" :border="true"></e-admin-global-heading>
+                            <e-admin-views-list ot-if="provider.scopes.length" :items="scopeRows()" :background="1"></e-admin-views-list>
+                            <e-admin-status-empty ot-if="!provider.scopes.length" icon="verified_user" title="No scopes" description="This provider does not request any oauth scopes."></e-admin-status-empty>
                         </div>
 
                         <div class="block" data-section="connection">
-                            <e-global-heading title="Connection" description="How this instance is linked to the provider." element="h3" :border="true"></e-global-heading>
-                            <e-views-table ot-if="connections.length" :fields="fields()" :items="rows()" :background="1"></e-views-table>
-                            <e-status-empty ot-if="!connections.length" icon="link_off" title="Not connected" description="Connect the provider to start running its actions."></e-status-empty>
+                            <e-admin-global-heading title="Connection" description="How this instance is linked to the provider." element="h3" :border="true"></e-admin-global-heading>
+                            <e-admin-views-table ot-if="connections.length" :fields="fields()" :items="rows()" :background="1"></e-admin-views-table>
+                            <e-admin-status-empty ot-if="!connections.length" icon="link_off" title="Not connected" description="Connect the provider to start running its actions."></e-admin-status-empty>
                         </div>
                     </div>
                 </div>

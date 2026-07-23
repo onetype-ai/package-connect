@@ -73,17 +73,17 @@ elements.ItemAdd({
 
         this.open = (provider) =>
         {
-            $ot.ui.screens.open('connect.provider', { slug: provider.slug });
+            $ot.admin.screens.open('connect.provider', { slug: provider.slug });
         };
 
         this.OnReady(() => this.load());
 
         return /* html */ `
             <div class="ot-flex-vertical ot-gap-m ot-container-m ot-py-l">
-                <e-global-heading title="Providers" description="Connect an external service to run its actions from anywhere in the platform." :border="true"></e-global-heading>
-                <e-global-tags :items="filters()" :active="tag" :background="3" :_change="filter"></e-global-tags>
+                <e-admin-global-heading title="Providers" description="Connect an external service to run its actions from anywhere in the platform." :border="true"></e-admin-global-heading>
+                <e-admin-global-tags :items="filters()" :active="tag" :background="3" :_change="filter"></e-admin-global-tags>
                 <div class="ot-grid-auto-m">
-                    <e-cards-extension
+                    <e-admin-cards-extension
                         ot-for="provider in filtered()"
                         :ot-key="provider.slug"
                         :icon="provider.icon"
@@ -98,7 +98,7 @@ elements.ItemAdd({
                         :meta="[$ot.connect.actions.list(provider.slug).length + ($ot.connect.actions.list(provider.slug).length === 1 ? ' action' : ' actions'), state(provider)]"
                         action="Open"
                         :_click="() => open(provider)"
-                    ></e-cards-extension>
+                    ></e-admin-cards-extension>
                 </div>
             </div>
         `;
